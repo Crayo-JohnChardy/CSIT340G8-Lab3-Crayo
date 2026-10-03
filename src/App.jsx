@@ -13,41 +13,61 @@ const Part = (props) => {
 const Content = (props) => {
   return (
     <div>
-      <Part name={props.part1.name} exercises={props.part1.exercises} />
-      <Part name={props.part2.name} exercises={props.part2.exercises} />
-      <Part name={props.part3.name} exercises={props.part3.exercises} />
+      <Part
+        name={props.parts[0].name}
+        exercises={props.parts[0].exercises}
+      />
+      <Part
+        name={props.parts[1].name}
+        exercises={props.parts[1].exercises}
+      />
+      <Part
+        name={props.parts[2].name}
+        exercises={props.parts[2].exercises}
+      />
     </div>
   )
 }
 
 const Total = (props) => {
-  return <p>Number of total units: {props.total}</p>
+  return (
+    <p>
+      Number of total units:{" "}
+      {props.parts[0].exercises +
+        props.parts[1].exercises +
+        props.parts[2].exercises}
+    </p>
+  )
 }
 
 const Footer = (props) => {
   return (
     <footer>
       <hr />
-      <p>{props.fullName} - {props.courseCode} - {props.section}</p>
+      <p>
+        {props.fullName} - {props.courseCode} - {props.section}
+      </p>
     </footer>
   )
 }
 
 const App = () => {
   const course = 'CSIT340 - Industry Elective 1'
-  
-  const part1 = {
-    name: 'IT317 - Project Management for IT',
-    exercises: 3
-  }
-  const part2 = {
-    name: 'IT365 - Data Analytics 1',
-    exercises: 3
-  }
-  const part3 = {
-    name: 'CSIT327 - Information Management 2',
-    exercises: 3
-  }
+
+  const parts = [
+    {
+      name: 'IT317 - Project Management for IT',
+      exercises: 3
+    },
+    {
+      name: 'IT365 - Data Analytics 1',
+      exercises: 3
+    },
+    {
+      name: 'CSIT327 - Information Management 2',
+      exercises: 3
+    }
+  ]
 
   const studentInfo = {
     fullName: 'John Chardy Crayo',
@@ -58,12 +78,12 @@ const App = () => {
   return (
     <div>
       <Header course={course} />
-      <Content part1={part1} part2={part2} part3={part3} />
-      <Total total={part1.exercises + part2.exercises + part3.exercises} />
-      <Footer 
-        fullName={studentInfo.fullName} 
-        courseCode={studentInfo.courseCode} 
-        section={studentInfo.section} 
+      <Content parts={parts} />
+      <Total parts={parts} />
+      <Footer
+        fullName={studentInfo.fullName}
+        courseCode={studentInfo.courseCode}
+        section={studentInfo.section}
       />
     </div>
   )
